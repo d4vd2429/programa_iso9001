@@ -1,0 +1,37 @@
+.dashboard-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.widgets-row {
+  display: flex;
+  gap: 2rem;
+}
+.widget {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #e0e0e0;
+  padding: 1.5rem 2rem;
+  flex: 1;
+  text-align: center;
+}
+.widget-value {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #1976d2;
+  margin-top: 0.5rem;
+}
+.dashboard-columns {
+  display: flex;
+  gap: 2rem;
+}
+.dashboard-col {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #e0e0e0;
+  padding: 1.5rem 2rem;
+  flex: 1;
+}
+.dashboard-col ul {
+  padding-left: 1.2rem;
+}
