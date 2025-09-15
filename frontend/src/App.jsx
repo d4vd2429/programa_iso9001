@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
+
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
 import Inicio from './pages/Inicio';
@@ -8,22 +9,31 @@ import Indicadores from './pages/Indicadores';
 import NoConformidades from './pages/NoConformidades';
 import Documentos from './pages/Documentos';
 import Auditorias from './pages/Auditorias';
+import Login from './pages/Login';
+import Registro from './pages/Registro';
+import { useLocation } from 'react-router-dom';
+import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
 
+
 function App() {
+  const location = useLocation();
+  const isAuthPage = location.pathname === '/login' || location.pathname === '/registro';
   return (
     <div className="app-container">
-      <Sidebar />
+      {!isAuthPage && <Sidebar />}
       <div className="main-content">
-        <Navbar />
+        {!isAuthPage && <Navbar />}
         <Routes>
           <Route path="/" element={<Navigate to="/inicio" />} />
-          <Route path="/inicio" element={<Inicio />} />
-          <Route path="/proyectos" element={<Proyectos />} />
-          <Route path="/indicadores" element={<Indicadores />} />
-          <Route path="/no-conformidades" element={<NoConformidades />} />
-          <Route path="/documentos" element={<Documentos />} />
-          <Route path="/auditorias" element={<Auditorias />} />
+          <Route path="/inicio" element={<ProtectedRoute><Inicio /></ProtectedRoute>} />
+          <Route path="/proyectos" element={<ProtectedRoute><Proyectos /></ProtectedRoute>} />
+          <Route path="/indicadores" element={<ProtectedRoute><Indicadores /></ProtectedRoute>} />
+          <Route path="/no-conformidades" element={<ProtectedRoute><NoConformidades /></ProtectedRoute>} />
+          <Route path="/documentos" element={<ProtectedRoute><Documentos /></ProtectedRoute>} />
+          <Route path="/auditorias" element={<ProtectedRoute><Auditorias /></ProtectedRoute>} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/registro" element={<Registro />} />
         </Routes>
       </div>
     </div>

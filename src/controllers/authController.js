@@ -13,6 +13,7 @@ exports.register = async (req, res) => {
     await db.query('INSERT INTO usuarios (nombre, email, password, rol) VALUES (?, ?, ?, ?)', [nombre, email, hashedPassword, rol || 'usuario']);
     res.status(201).json({ message: 'Usuario registrado correctamente.' });
   } catch (error) {
+    console.log('ERROR REGISTRO:', error);
     res.status(500).json({ message: 'Error en el registro.', error });
   }
 };
