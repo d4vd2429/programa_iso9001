@@ -8,7 +8,9 @@ const menu = [
   { path: '/indicadores', label: 'Indicadores' },
   { path: '/no-conformidades', label: 'No Conformidades' },
   { path: '/documentos', label: 'Documentos' },
-  { path: '/auditorias', label: 'Auditorías' },
+  { path: '/auditorias', label: 'Auditorías', sub: [
+    { path: '/checklist', label: 'Checklist ISO 9001' }
+  ] },
 ];
 
 function Sidebar() {
@@ -19,9 +21,20 @@ function Sidebar() {
       <nav>
         <ul>
           {menu.map(item => (
-            <li key={item.path} className={location.pathname === item.path ? 'active' : ''}>
-              <Link to={item.path}>{item.label}</Link>
-            </li>
+            <React.Fragment key={item.path}>
+              <li className={location.pathname === item.path ? 'active' : ''}>
+                <Link to={item.path}>{item.label}</Link>
+              </li>
+              {item.sub && location.pathname.startsWith('/auditorias') && (
+                <ul style={{ marginLeft: 16 }}>
+                  {item.sub.map(subitem => (
+                    <li key={subitem.path} className={location.pathname === subitem.path ? 'active' : ''}>
+                      <Link to={subitem.path}>{subitem.label}</Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </React.Fragment>
           ))}
         </ul>
       </nav>

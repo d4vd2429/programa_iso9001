@@ -16,8 +16,12 @@ const proyectoRoutes = require('./routes/proyectos');
 app.use('/api/proyectos', proyectoRoutes);
 
 
+
 const dashboardRoutes = require('./routes/dashboard');
 app.use('/api/dashboard', dashboardRoutes);
+
+const checklistRoutes = require('./routes/checklist');
+app.use('/api/checklist', checklistRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

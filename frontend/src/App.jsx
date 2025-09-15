@@ -9,6 +9,7 @@ import Indicadores from './pages/Indicadores';
 import NoConformidades from './pages/NoConformidades';
 import Documentos from './pages/Documentos';
 import Auditorias from './pages/Auditorias';
+import ChecklistISO9001 from './pages/ChecklistISO9001';
 import Login from './pages/Login';
 import Registro from './pages/Registro';
 import { useLocation } from 'react-router-dom';
@@ -34,6 +35,7 @@ function App() {
           <Route path="/auditorias" element={<ProtectedRoute><Auditorias /></ProtectedRoute>} />
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registro />} />
+          <Route path="/checklist" element={<ProtectedRoute><ChecklistISO9001 /></ProtectedRoute>} />
         </Routes>
       </div>
     </div>
