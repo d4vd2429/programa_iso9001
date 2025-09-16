@@ -3,14 +3,25 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 exports.register = async (req, res) => {
-  const { nombre, email, password, rol } = req.body;
+  const {
+    razonSocial, nit, representante, sector, tipoEmpresa, direccion, telefonos, numEmpleados,
+    email, web, facebook, instagram, tiktok, password, rol
+  } = req.body;
   try {
     const [user] = await db.query('SELECT id FROM usuarios WHERE email = ?', [email]);
     if (user.length > 0) {
       return res.status(400).json({ message: 'El email ya está registrado.' });
     }
     const hashedPassword = await bcrypt.hash(password, 10);
-    await db.query('INSERT INTO usuarios (nombre, email, password, rol) VALUES (?, ?, ?, ?)', [nombre, email, hashedPassword, rol || 'usuario']);
+    await db.query(
+      `INSERT INTO usuarios 
+      (razon_social, nit, representante_legal, sector_economico, tipo_empresa, direccion, telefonos, num_empleados, email, web, facebook, instagram, tiktok, password, rol)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        razonSocial, nit, representante, sector, tipoEmpresa, direccion, telefonos, numEmpleados,
+        email, web, facebook, instagram, tiktok, hashedPassword, rol || 'usuario'
+      ]
+    );
     res.status(201).json({ message: 'Usuario registrado correctamente.' });
   } catch (error) {
     console.log('ERROR REGISTRO:', error);

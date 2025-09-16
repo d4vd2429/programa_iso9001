@@ -7,8 +7,19 @@ USE iso9001;
 -- Tabla de usuarios
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
+    razon_social VARCHAR(150) NOT NULL,
+    nit VARCHAR(50) NOT NULL,
+    representante_legal VARCHAR(100) NOT NULL,
+    sector_economico VARCHAR(100) NOT NULL,
+    tipo_empresa VARCHAR(100) NOT NULL,
+    direccion VARCHAR(150) NOT NULL,
+    telefonos VARCHAR(100) NOT NULL,
+    num_empleados INT NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
+    web VARCHAR(100),
+    facebook VARCHAR(100),
+    instagram VARCHAR(100),
+    tiktok VARCHAR(100),
     password VARCHAR(255) NOT NULL,
     rol ENUM('admin','auditor','usuario') DEFAULT 'usuario',
     creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
